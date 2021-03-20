@@ -1,0 +1,12 @@
+<h1>Booking id <%= @booking.id %></h1>
+
+<p>Flight date: <%= @flight.departure_date %></p>
+<p>From airport: <%= @flight.origin.code %></p>
+<p>To airport: <%= @flight.destination.code %></p>
+<p>Flight id: <%= @flight.id %></p>
+
+<% @booking.passengers.each.with_index do |passenger, i| %>
+  <h2>Passenger <%= i + 1 %></h2>
+  <p>Name: <%= passenger.name %></p>
+  <p>Email: <%= passenger.email %></p>
+<% end %>

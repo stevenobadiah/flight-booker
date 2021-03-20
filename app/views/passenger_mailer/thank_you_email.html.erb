@@ -1,0 +1,10 @@
+<h1><%= "#{@passenger.name}, thank you for booking with Obadiah Air" %></h1>
+
+<p>Prepare for the most luxurious experience 1200 feet or greater from the Earths surface ;)</p>
+<p>We hope that you book with us again!</p>
+
+<h2>Flight Details</h2>
+<p><%="Origin Airport: #{@booking.flight.origin.code}"%></p>
+<p><%="Destination Airport: #{@booking.flight.destination.code}"%></p>
+<p><%="Take Off Time: #{@booking.flight.departure_date}"%></p>
+<p><%="Flight Duration: #{@booking.flight.duration}"%></p>

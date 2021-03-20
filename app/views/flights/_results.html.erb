@@ -1,0 +1,36 @@
+<% if @available_flights.empty? %>
+    <h3>No results found.</h3>
+    <p> <%= @date_check %> </p>
+<% else %>
+    <h3>Currently <%= @available_flights.count %> flights are available: </h3>
+    <p> <%= @date_check %> </p>
+
+    <%= form_with(url: "/bookings/new", method: "get", local: true) do %>
+        <table>
+            <tr>
+                <th></th>
+                <th>Flight Code</th>
+                <th>Origin</th>
+                <th>Destination</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Flight Duration</th>
+            </tr>
+            <% @available_flights.each do |flight| %></td>
+                <tr>
+                    <td><%= radio_button_tag :flight_id, flight.id, false %></td>
+                    <td><%= flight.flight_number %></td>
+                    <td><%= flight.origin.code %></td>
+                    <td><%= flight.destination.code %></td>
+                    <td><%= flight.date_formatted %></td>
+                    <td><%= flight.time_formatted %></td>
+                    <td><%= flight.duration %></td>
+                </tr>
+            <% end %>
+        </table>
+
+        <%= hidden_field_tag(:num_passengers, @num_tickets) %>
+        <%= submit_tag("Submit") %>
+    <% end %>
+<% end %>
+

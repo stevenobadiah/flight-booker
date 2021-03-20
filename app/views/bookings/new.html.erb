@@ -1,0 +1,20 @@
+<%= form_with model: @booking, local: true do |booking| %>
+  <p>Date: <%= @flight.departure_date %></p>
+  <p>From airport: <%= @flight.origin.code %></p>
+  <p>To airport: <%= @flight.destination.code %></p>
+  <p>Flight number: <%= @flight.flight_number %></p>
+
+  <% @booking.passengers.each.with_index do |passenger, i| %>
+    <h2>Passenger <%= i + 1 %></h2>
+    <%= booking.fields_for :passengers, passenger do |passenger_f| %>
+      <%= passenger_f.label :name, "Name: " %>
+      <%= passenger_f.text_field :name %><br /><br />
+
+      <%= passenger_f.label :email, "Email: " %>
+      <%= passenger_f.email_field :email %><br /><br />
+    <% end %>
+  <% end %>
+
+  <%= hidden_field_tag :flight_id, @flight.id %>
+  <%= booking.submit "Submit" %>
+<% end %>

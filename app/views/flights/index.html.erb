@@ -1,0 +1,32 @@
+
+<%= form_with(url: flights_path, method: "get", local:true) do |f|%>
+  <div>
+    <div>
+      <%= f.label(:origin, "Starting Airport:")%>
+      <%= f.select(:origin_id, options_for_select(@airports)) %><br>
+    </div>
+
+    <div>
+      <%=f.label :destination, "Destination Airport"%>
+      <%=f.select(:destination_id, options_for_select(@airports))%><br>
+    </div>
+
+    <div>
+      <%=f.label :passengers%>
+      <%=f.select(:num_passengers, options_for_select([1, 2, 3, 4, 5])) %><br>
+    </div>
+
+    <div>
+      <%= f.label(:departure_date, "Date: ") %>
+      <%= f.select(:departure_date, options_for_select(@date_options), { include_blank: "Choose a Date" }) %>
+      <p>Leave blank for all scheduled flights.</p>
+  </div>
+
+  <%= submit_tag("Search") %>
+<% end %>
+
+<br><br><br>
+
+<% if params[:commit] %>
+  <%= render 'results' %>
+<% end %>
